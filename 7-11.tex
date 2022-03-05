@@ -1,0 +1,322 @@
+\section{The Inequalities of Azuma and Janson}
+\textbf{Theorem 7.1 (Azuma's Inequality)} Let $(\Omega, \mathrm{Pr})$ be the product of $N$ probability spaces $\left(\Omega_{1}, \operatorname{Pr}_{1}\right), \ldots$, $\left(\Omega_{N}, \operatorname{Pr}_{N}\right)$, and let $X: \Omega \rightarrow \mathbb{R}$ be a random variable with the property that the effect of the $i$-th coordinate is at most $c_{i}$. Then for all $t \geq 0$ we have
+$$
+\operatorname{Pr}[X \geq \mathbb{E}[X]+t] \leq e^{-\frac{t^{2}}{2 \sum_{i=1}^{N} c_{i}^{2}}} \quad \text { and } \quad \operatorname{Pr}[X \leq \mathbb{E}[X]-t] \leq e^{-\frac{t^{2}}{2 \sum_{i=1}^{N} c_{i}^{2}}}
+$$
+
+\textbf{Theorem 7.2 (Janson's Inequality)} Let $(\Omega, \operatorname{Pr})$ be the product of $N$ discrete probability spaces wit $\Omega_{i}=\{0,1\}$ for all $i=1, \ldots, N$. For sets $A_{1}, \ldots, A_{m} \subseteq[N]$ and $1 \leq i \leq m$ let $X_{i}$ denote the indicator variable for the event that all coordinates from $A_{i}$ are equal to one, that is $X_{i}\left(\omega_{1}, \ldots, \omega_{n}\right)=1$ if an only if $\omega_{j}=1$ for all $j \in A_{i}$. Furthermore, let $X:=\sum_{i=1}^{m} X_{i}$. Then we have for
+$$
+\lambda:=\mathbb{E}[X]=\sum_{i=1}^{m} \operatorname{Pr}\left[X_{i}=1\right] \quad \text { and } \quad \Delta:=\sum_{i \neq j \atop A_{i} \cap A_{j} \neq \emptyset} \operatorname{Pr}\left[X_{i}=1 \wedge X_{j}=1\right],
+$$
+and for all $0 \leq t \leq \mathbb{E}[X]$ that
+$$
+\operatorname{Pr}[X \leq \mathbb{E}[X]-t] \leq e^{-\frac{t^{2}}{2(\lambda+\Delta)}}
+$$
+In particular we get (setting $t=\mathbb{E}[X]$ in the above inequality),
+$$
+\operatorname{Pr}[X=0] \leq e^{-\frac{\lambda^{2}}{2(\lambda+\Delta)}} \leq e^{-\min \left\{\lambda, \lambda^{2} / \Delta\right\} / 4} .
+$$
+
+\section{Talagrand’s Inequality}
+\textbf{Theorem 8.1 (Talagrand's Inequality)} 
+Let $(\Omega, \operatorname{Pr})$ be the product of $N$ probability spaces $\left(\Omega_{1}, \operatorname{Pr}_{1}\right)$, $\ldots,\left(\Omega_{N}, \operatorname{Pr}_{N}\right)$, and let $X: \Omega \rightarrow \mathbb{R}$ be a random variable with the property that the effect of the $i$-th coordinate is at most $c_{i}$. Moreover, let $\psi: \mathbb{R} \rightarrow \mathbb{R}$ be a function such that for every $\omega \in \Omega$ and $r \in \mathbb{R}$ with $X(\omega) \geq r$ there exists a set $J \subseteq\{1, \ldots, N\}$ such that for all $\omega^{\prime} \in \Omega$ with $\omega_{i}=\omega_{i}^{\prime}$ when $i \in J$, we have $X\left(\omega^{\prime}\right) \geq r$ and such that $\sum_{i \in J} c_{i}^{2} \leq \psi(r)$.
+Then for every median $m \in \mathbb{R}$ of $X$ and every $t>0$ we have
+$$
+\operatorname{Pr}[|X-m| \geq t] \leq 4 e^{-\frac{t^{2}}{4 \psi(m+t)}} .
+$$
+
+\textbf{Lemma 8.2} If $X$ assumes non-negative real values and there exist constants $C_{0}, C_{1}$ such that $\psi(r) \leq C_{0}+C_{1} r$ for every $r \geq 0$ satisfies the conditions of Talagrand's inequality, then
+$$
+\operatorname{Pr}[|X-\mathbb{E}[X]| \geq t] \leq 4 e^{-\Omega\left(\frac{t^{2}}{[\mathbb{E}[X]+t}\right)} .
+$$
+
+Proof. At first note that we can without loss of generality assume that $t=\omega(\sqrt{\mathbb{E}}[X])$ and $t=\omega(1)$. If either of these is not true, then we can find a constant $D$ such that $\frac{t^{2}}{\mathbb{E}[X]+t} \leq D$ which implies that we aim to prove
+$$
+\operatorname{Pr}[|X-\mathbb{E}[X]| \geq t] \leq 4 e^{-\Omega(D)} .
+$$
+But as $4 e^{-\Omega(D)}$ can be larger than 1 (e.g. if the constant hidden in the $\Omega$-notation is less than $1 / D$ ) this inequality becomes trivial. Also, still without loss of generality, we can assume that $C_{0}>0$.
+Under the given conditions Theorem $8.1$ yields for every median $m$ of $X$ that
+$$
+\operatorname{Pr}[|X-m| \geq t] \leq 4 e^{-\frac{t^{2}}{4 C_{0}+4 C_{1}(m+t)}} \leq \begin{cases}4 e^{-t^{2} /\left[4\left(C_{0}+C_{1}\right)\left(1+\frac{C_{1}}{C_{0}} m\right)\right]} & \text { if } 0 \leq t \leq 1+\frac{C_{1}}{C_{0}} m \\ 4 e^{-t / 4\left(C_{0}+C_{1}\right)} & \text { if } t>1+\frac{C_{1}}{C_{0}} m\end{cases}
+$$
+In particular, it follows that
+$$
+\begin{aligned}
+|\mathbb{E}[X]-m| &=\left|\sum_{\omega \in \Omega} \operatorname{Pr}[\omega](X(\omega)-m)\right| \\
+& \leq \sum_{\omega \in \Omega} \operatorname{Pr}[\omega]|X(\omega)-m| \\
+&=\mathbb{E}[|X-m|] \\
+&=\int_{0}^{\infty} \operatorname{Pr}[|X-m|>t] d t \\
+& \leq \int_{0}^{1+\frac{C_{1}}{C_{0}} m} 4 e^{-t^{2} /\left[4\left(C_{0}+C_{1}\right)\left(1+\frac{C_{1}}{C_{0}} m\right)\right]} d t+\int_{1+\frac{C_{1}}{C_{0}} m}^{\infty} 4 e^{-t / 4\left(C_{0}+C_{1}\right)} d t \\
+& \leq 4 \sqrt{\pi\left(C_{0}+C_{1}\right)\left(1+\frac{C_{1}}{C_{0}} m\right)}+16\left(C_{0}+C_{1}\right)
+\end{aligned}
+$$
+
+By the definition of the median and by Markov's inequality we have $m \leq 2 \operatorname{Pr}[X \geq m] m \leq 2 \mathbb{E}[X]$, so that
+$$
+|\mathbb{E}[X]-m| \leq 4 \sqrt{\pi\left(C_{0}+C_{1}\right)\left(1+\frac{C_{1}}{C_{0}} 2 \mathbb{E}[X]\right)}+16\left(C_{0}+C_{1}\right)=O(\sqrt{\mathbb{E}[X]}+1)=o(t) .
+$$
+With this estimate we can use Theorem $8.1$ to obtain concentration around the expectation as follows.
+$$
+\begin{aligned}
+\operatorname{Pr}[|X-\mathbb{E}[X]| \geq t] & \leq \operatorname{Pr}[|X-m+m-\mathbb{E}[X]| \geq t] \\
+& \leq \operatorname{Pr}[|X-m| \geq t-|m-\mathbb{E}[X]|] \\
+& \leq 4 e^{-\frac{\left(t-\mid m-\mathbb{E}[X||)^{2}\right.}{4 C_{0}+C_{1}(m+t-|m-\mathbb{E}[X]|)}} \\
+&=4 e^{-\frac{t^2}{16 C_{0}+16C_1 (\E[X]+o(t)+t)}} \\
+&=4 e^{-\Omega\left(\frac{t^{2}}{\E[X]+t}\right)}
+\end{aligned}
+$$
+
+\section{ Markov Chains I: Definition and Examples}
+\textbf{Definition 9.1} A Markov Chain (with discrete time) over the finite (or countably infinite) state set $S$ consists of an infinite sequence of random variables $\left(X_{t}\right)_{t \in \mathbb{N}_{0}}$ with domain $S$ and a starting distribution $q_{0}$, a vector of $|S|$ non-negative values summing up to one. For each state $i \in S$ we have
+$$
+\operatorname{Pr}\left[X_{0}=i\right]=\left(q_{0}\right)_{i}
+$$
+Moreover, for $t \geq 1, k \in\{0,1, \ldots, t\}$ and arbitrary states $j, s_{k} \in S$ we have
+$$
+\operatorname{Pr}\left[X_{t+1}=j \mid X_{t}=s_{t}, X_{t-1}=s_{t-1}, \ldots, X_{0}=s_{0}\right]=\operatorname{Pr}\left[X_{t+1}=j \mid X_{t}=s_{t}\right]
+$$
+if both conditional probabilities are well defined, i.e. if $\operatorname{Pr}\left[X_{t}=s_{t}, X_{t-1}=s_{t-1}, \ldots, X_{0}=s_{0}\right]>0 .$ If the values
+$$
+p_{i j}:=\operatorname{Pr}\left[X_{t+1}=j \mid X_{t}=i\right]
+$$
+are independent of $t$, we call the Markov chain (time-)homogeneous. In this case its transition matrix is defined by $P=\left(p_{i j}\right)_{i, j \in S}$.
+
+\textbf{Definition $9.3$} The random variable
+$$
+T_{i j}:=\min \left\{n \geq 1 \mid X_{n}=j, \text { if } X_{0}=i\right\}
+$$
+counts the number of steps needed by the Markov chain to get from $i$ to $j . T_{i j}$ is called hitting time from state $i$ to state $j .$ If $j$ is never reached, we set $T_{i j}=\infty$. Furthermore we define $h_{i j}:=\mathbb{E}\left[T_{i j}\right]$.
+The probability to get from state $i$ to state $j$ after arbitrarily many steps is called visit probability $f_{i j}$. Formally we define
+$$
+f_{i j}:=\operatorname{Pr}\left[T_{i j}<\infty\right] .
+$$
+
+\textbf{Lemma 9.5} For the expected hitting times we have
+$$
+h_{i j}=1+\sum_{k \neq j} p_{i k} h_{k j} \quad \text { for all } i, j \in S
+$$
+provided that the expectations $h_{i j}$ and $h_{k j}$ exist. For the visit probabilities we have similarly
+$$
+f_{i j}=p_{i j}+\sum_{k \neq j} p_{i k} f_{k j} \quad \text { for all } i, j \in S .
+$$
+
+\textbf{Theorem 9.9 (Additive Drift Theorem)}
+Let $\left(X_{t}\right)_{t \in \mathbb{N}_{0}}$ be a Markov chain with state space $\mathcal{S} \subseteq[0, \infty)$ and assume $X_{0}=n$. If there exists $c>0$ such that for all $x \in S, x>0$ we have
+$$
+\mathbb{E}\left[X_{t+1} \mid X_{t}=x\right] \leq x-c,
+$$
+then
+$$
+\mathbb{E}[T] \leq \frac{n}{c}
+$$
+
+\textbf{Theorem 9.10} Let $\left(X_{t}\right)_{t \in \mathbb{N}_{0}}$ be a Makov chain with state space $\mathcal{S}=\mathbb{N}_{0}$ and let $T$ and $X_{0}$ be as in Theorem 9.9. Furthermore let $C \in \mathbb{N}$ be some positive constant and denote by $T_{C}$ the earliest point in time $t$ such that $X_{t} \leq C .$ Assume that there exist constants $p_{0}>0$ and $B>0$ such that for all $c \in\{1, \ldots, C\} \cap S:$
+$$
+\operatorname{Pr}\left[X_{t+1}=0 \mid X_{t}=c\right] \geq p_{0}
+$$
+and
+$$
+\sum_{n>C} \operatorname{Pr}\left[X_{t+1}=n \mid X_{t}=c\right] \cdot \mathbb{E}\left[T_{C} \mid X_{0}=n\right] \leq B
+$$
+Then $\mathbb{E}[T]=\mathbb{E}\left[T_{C}\right]+O(1)$.
+
+\textbf{Theorem 9.11} Let $\left(X_{t}\right)_{t \in \mathbb{N}_{0}}$ be a Markov chain with state space $\mathcal{S}$ and with $X_{0}=n$. Moreover, assume that $g: \mathcal{S} \rightarrow[0, \infty)$ is a function that is injective when restricted to the domain $g^{-1}((0, \infty))$. Let $T$ be the earliest point in time $t$ such that $g\left(X_{t}\right)=0$. Assume furthermore that there exists a constant $c>0$ such that for all
+$$
+\mathbb{E}\left[g\left(X_{t+1}\right) \mid X_{t}=x\right] \leq g(x)-c \quad \text { for all } x \in \mathcal{S} \text { with } g(x)>0 .
+$$
+Then we have $\mathbb{E}[T] \leq \frac{g(n)}{c}$.
+
+\textbf{Theorem $9.12$ (Multiplicative Drift Theorem)}
+Let $\left(X_{t}\right)_{t \in \mathbb{N}_{0}}$ be a Markov chain with state space $\mathcal{S} \subset\{0\} \cup[1, \infty)$ and assume $X_{0}=n$. Let $T$ be the random variable that denotes the earliest point in time $t \geq 0$ such that $X_{t}=0$. If there exists a constant $\varepsilon>0$ such that
+$$
+\mathbb{E}\left[X_{t+1} \mid X_{t}=x\right] \leq(1-\varepsilon) x \quad \text { for all } x>0,
+$$
+then
+$$
+\mathbb{E}[T] \leq \frac{1+\log n}{\varepsilon}
+$$
+and
+$$
+\operatorname{Pr}\left[T \geq \frac{x+\log n}{\varepsilon}+1\right] \leq e^{-x} \quad \text { for all } x \geq 1
+$$
+
+\section{Markov Chains II: Stationary Distribution}
+\textbf{Definition 10.1} Let $P$ be the transition matrix of a Markov chain. A stationary distribution of the Markov chain is a state vector $\pi$ satisfying $\pi=\pi \cdot P$.
+
+\textbf{Definition 10.2} A state $i$ is called absorbing if it has no outgoing transition, i.e., if $p_{i j}=0$ for all $j \neq i$ and thus $p_{i i}=1$.
+
+\textbf{Definition 10.3} A Markov chain is called irreducible if for all pairs of states $i, j \in S$ there exists a number $n \in \mathbb{N}$ such that $p_{i j}^{(n)}>0$.
+
+\textbf{Lemma 10.4} For irreducible finite Markov chains we have $f_{i j}=\operatorname{Pr}\left[T_{i j}<\infty\right]=1$ for all states $i, j \in S$. Moreover all expectations $h_{i j}=\mathbb{E}\left[T_{i j}\right]$ exist.
+
+\textbf{Theorem 10.5} An irreducible finite Markov chain has a unique stationary distribution $\pi$, namely
+$$
+\pi_{j}=\frac{1}{h_{j j}}, \quad j \in S .
+$$
+
+\textbf{Definition 10.6} The periodicity of a state $j$ is the greatest common divisor of
+$$
+\left\{n \in \mathbb{N}_{0} \mid p_{j j}^{(n)}>0\right\} .
+$$
+A state with periodicity 1 is called aperiodic. A Markov chain is called aperiodic if all states are aperiodic.
+
+\textbf {Definition 10.7} Irreducible, aperiodic Markov chains are called ergodic. 
+
+\textbf{Theorem 10.8 (Fundamental theorem for ergodic Markov chains)} For every ergodic finite Markov chain $\left(X_{t}\right)_{t \in \mathbb{N}_{0}}$ we have independently of the initial distribution that
+$$
+\lim _{t \rightarrow \infty} q_{t}=\pi,
+$$
+where $\pi$ denotes the chain's unique stationary distribution.
+
+We close this section with some observations which may help to find the stationary distribution of a Markov chain. Recall that the transition matrix of a Markov chain has the property that all row sums are equal to one, the column sums, however, need not to be all equal to one. If all row and column sums are equal to one, then the transition matrix is said to be doubly stochastic. For such matrices we have the following lemma.
+
+\textbf{Lemma 10.9} Let $\left(X_{t}\right)_{t \in \mathbb{N}_{0}}$ be a finite ergodic Markov chains with state space $S$. Then the uniform distribution $\pi \equiv \frac{1}{|S|}$ is the unique stationary distribution if and only if the transition matrix $P$ is doubly stochastic.
+
+\textbf{Lemma 10.10} Let $\left(X_{t}\right)_{t \in \mathbb{N}_{0}}$ be a finite ergodic Markov chains with state space $S$ and transition matrix $P$. Then if a probability distribution $\pi$ satisfies
+$$
+\pi_{x} p_{x y}=\pi_{y} p_{y x} \quad \text { for all } x, y \in S,
+$$
+then $\pi$ is the unique stationary distribution.
+
+\textbf{Definition $10.11$ }An ergodic Markov chain is called reversible if for all states $x, y$ and the stationary distribution $\pi$ we have
+$$
+\pi_{x} p_{x y}=\pi_{y} p_{y x}
+$$
+
+\textbf{Definition 10.12} For a Markov chain $\left(M_{t}\right)_{t \in \mathbb{N}_{0}}$ with transition matrix $P$, the $\varepsilon$-convergence time with respect to the total variation distance is given by
+$$
+\tau_{T V}(\varepsilon):=\min \left\{t: \frac{1}{2} \sum_{y \in S}\left|\left(q_{0} P^{t}\right)_{y}-\pi_{y}\right| \leq \varepsilon \text { for all initial distributions } q_{0}\right\}
+$$
+
+\textbf{Definition $10.13$} Let $\mathcal{I}$ be a class of problems and $\mathcal{M C}(\mathcal{I})$ the corresponding family of Markov chains. We call $\mathcal{M C}(\mathcal{I})$ rapidly mixing if
+$$
+\tau_{T V}(\varepsilon)=\mathcal{O}\left(\text { poly }\left(|I|, \log \varepsilon^{-1}\right)\right) \text { for all } I \in \mathcal{I},
+$$
+where $|I|$ denotes the input length of the instance I of the problem.
+\subsection{Flow}
+For this we relate every ergodic Markov chain
+$M=\left(M_{t}\right)_{t \in \mathbb{N}_{0}}$ with stationary distribution $\pi$ to a directed graph $G_{M}=(V, A)$ with vertex set $V=S$ and edge set
+$$
+A=\left\{(x, y) \mid x, y \in S, x \neq y \text { and } p_{x y}>0\right\}
+$$
+(note that so far this is simply the transition diagram without loops). We define a weight function $c$ on $A$ by
+$$
+c(x, y):=\pi_{x} p_{x y},
+$$
+where as usual we write $c(x, y)$ instead of $c((x, y))$. The intuition behind this definition is that for $e=(x, y) \in A, c(e)$ is the probability that a Markov chain obeying its stationary distribution takes the edge $e$ in the next step.
+
+We can now define the following transporting problem on $G_{M}$. For every (ordered) pair $(x, y)$ of states $x \neq y$ we are to transport an amount of $\pi_{x} \pi_{y}$ of some commodity $g_{x y}$ from $x$ to $y$. Equivalently, we search for a flow $f_{x y}: A \rightarrow \mathbb{R}_{\geq 0}$ such that
+$$
+\sum_{u} f_{x y}(u, v)=\sum_{u} f_{x y}(v, u) \quad \text { for all } v \neq x, y
+$$
+and such that the net flow out of $x$ (which is equal to the net flow into $y$ ) is equal to $\pi_{x} \pi_{y}$, that is
+$$
+\sum_{u} f_{x y}(x, u)-\sum_{u} f_{x y}(u, x)=\sum_{u} f_{x y}(u, y)-\sum_{u} f_{x y}(y, u)=\pi_{x} \pi_{y} .
+$$
+For given flows $\left(f_{x y}\right)_{x \neq y \in S}$, we define the total flow $f$ as
+$$
+f(e):=\sum_{x \neq y} f_{x y}(e)
+$$
+and denote by
+$$
+\rho(f):=\max _{e \in A} \frac{f(e)}{c(e)}
+$$
+the maximum relative edge load.
+We now can state the following theorem (without proof), which characterizes rapidly mixing Markov chains with the help of this construction:
+
+
+\textbf{Theorem $10.14$}
+ Let $\mathcal{M C}(\mathcal{I})$ be a family of ergodic and reversible Markov chains defined by a class of problems $\mathcal{I} .$ We denote by $\pi_{\min }(I)$ the smallest state probability that appears in the stationary distribution $\pi$ of the Markov chain $M(I) .$ If $\log \pi_{\min }(I)^{-1}$ is polynomially bounded in the input size $|I|$, then the family $\mathcal{M C}(\mathcal{I})$ is rapidly mixing if and only if for each Markov chain $M(I)$ there exist flows $\left(f_{x y}\right)_{x \neq y \in S}$ such that $\rho(f)$ is polynomially bounded in $|I|$.
+ 
+\textbf{ Definition $10.15$} Let $\left(M_{t}\right)_{t \in \mathbb{N}_{0}}$ be a Markov chain with state space $S$ and transition matrix $P=$ $\left(p_{x y}\right)_{x, y \in S} . A$ coupling of $M_{t}$ is a Markov chain $Z_{t}=\left(X_{t}, Y_{t}\right)$ with state space $S \times S$ such that
+$$
+\begin{array}{lll}
+\operatorname{Pr}\left[X_{t+1}=x^{\prime} \mid Z_{t}=(x, y)\right]=p_{x x^{\prime}} & \forall x, x^{\prime}, y \in S, t \in \mathbb{N}_{0} \\
+\text { and } \operatorname{Pr}\left[Y_{t+1}=y^{\prime} \mid Z_{t}=(x, y)\right]=p_{y y^{\prime}} & \forall x, y, y^{\prime} \in S, t \in \mathbb{N}_{0} .
+\end{array}
+$$
+
+\textbf{Lemma 10.16} Let $\left(M_{t}\right)_{t \in \mathbb{N}_{0}}$ be a finite ergodic Markov chain with state space $S$ and $Z_{t}=\left(X_{t}, Y_{t}\right) a$ coupling of $M_{t}$. Moreover, let $\epsilon>0$ and $t_{0}$ be such that
+$$
+\operatorname{Pr}\left[X_{t_{0}} \neq Y_{t_{0}} \mid X_{0}=x, Y_{0}=y\right] \leq \epsilon
+$$
+is satisfied for all $x, y \in S$. Then we have
+$$
+\tau_{T V}(\epsilon) \leq t_{0}
+$$
+where $\tau_{T V}$ is defined as in Definition 10.12.
+
+\textbf{Lemma $10.17$} Let $\left(M_{t}\right)_{t \in \mathbb{N}_{0}}$ be as in Lemma $10.16$ and assume that $X_{t}=Y_{t}$ implies $X_{t+1}=Y_{t+1}$ and let $t_{0}$ be such that
+$$
+\operatorname{Pr}\left[X_{t_{0}} \neq Y_{t_{0}} \mid X_{0}=x, Y_{0}=y\right] \leq 1 / 2
+$$
+is satisfied for all $x, y \in S$. Then
+$$
+\tau_{T V}(\epsilon) \leq \log _{2}\left(\varepsilon^{-1}\right) \cdot t_{0} \quad \forall \varepsilon>0
+$$
+
+\section{Generating Functions}
+\textbf{Definition 11.1} The (probability) generating function of a nonnegative integer-valued random variable $X$ is defined by
+$$
+G_{X}(s):=\sum_{k=0}^{\infty} \operatorname{Pr}[X=k] \cdot s^{k}=\mathbb{E}\left[s^{X}\right]
+$$
+
+\textbf{Theorem 11.2 (Uniqueness of the probability generating function)} The density and the distribution of a nonnegative integer-valued random variable $X$ are uniquely determined by its probability generating function.
+
+Some examples of probability generating functions are easily obtained:
+Binomial distribution.
+For $X \sim \operatorname{Bin}(n, p)$ we obtain by applying the binomial formula that
+$$
+G_{X}(s)=\mathbb{E}\left[s^{X}\right]=\sum_{k=0}^{n}\left(\begin{array}{l}
+n \\
+k
+\end{array}\right) p^{k}(1-p)^{n-k} \cdot s^{k}=(1-p+p s)^{n} .
+$$
+Geometric distribution.
+Let $X$ be a geometrically distributed random variable with success probability $p$. Then we have
+$$
+G_{X}(s)=\mathbb{E}\left[s^{X}\right]=\sum_{k=1}^{\infty} p(1-p)^{k-1} \cdot s^{k}=p s \cdot \sum_{k=1}^{\infty}((1-p) s)^{k-1}=\frac{p s}{1-(1-p) s} .
+$$
+Poisson distribution.
+For $X \sim \operatorname{Po}(\lambda)$ we have
+$$
+G_{X}(s)=\mathbb{E}\left[s^{X}\right]=\sum_{k=0}^{\infty} e^{-\lambda} \frac{\lambda^{k}}{k !} \cdot s^{k}=e^{-\lambda+\lambda s}=e^{\lambda(s-1)}
+$$
+\textbf{Example 11.3}  Let $X$ be binomially distributed with $X \sim \operatorname{Bin}(n, \lambda / n) .$ For $n \rightarrow \infty$ we obtain
+$$
+G_{X}(s)=\left(1-\frac{\lambda}{n}+\frac{\lambda s}{n}\right)^{n} \rightarrow e^{\lambda(s-1)}
+$$
+$G_{X}(s)$ thus converges to the probability generating function of a Poisson distributed random variable with parameter $\lambda$. This is in line with the observation that the Poisson distribution appears as limit of the binomial distribution.
+
+\textbf{ Lemma 11.6} If $X$ and $Y$ are two independent nonnegative integer-valued random variables and $Z=$ $X+Y$ denotes their sum, then
+$$
+\operatorname{Pr}[Z=z]=\sum_{x=0}^{z} \operatorname{Pr}[X=x] \cdot \operatorname{Pr}[Y=z-x]
+$$
+
+\textbf{Theorem 11.7 (Generating Function of a Sum)} Let $X_{1}, \ldots, X_{n}$ be independent nonnegative integervalued random variables, and let $Z:=X_{1}+\ldots+X_{n}$. Then
+$$
+G_{Z}(s)=G_{X_{1}}(s) \cdot \ldots \cdot G_{X_{n}}(s)
+$$
+
+\textbf{Theorem 11.10 } Let $X_{1}, X_{2}, \ldots$ be independent and identically distributed random variables that are non-negative and integer-valued with probability generating function $G_{X}(s) .$ Let $N$ be another independent nonnegative integer-valued random variable with probability generating function $G_{N}(s) .$ Then the random variable $Z:=X_{1}+\ldots+X_{N}$ has the probability generating function $G_{Z}(s)=G_{N}\left(G_{X}(s)\right)$. Furthermore, we have
+$$
+\mathbb{E}[Z]=\mathbb{E}[N] \cdot \mathbb{E}[X]
+$$
+\textbf{Definition: recurrent events}
+Formally, the events $H_{1}, H_{2}, \ldots$ are called recurrent if
+$$
+\operatorname{Pr}\left[H_{i} \mid \bar{H}_{1} \cap \ldots \cap \bar{H}_{j-1} \cap H_{j}\right]=\operatorname{Pr}\left[H_{i-j}\right]
+$$
+holds for all $i, j \in \mathbb{N}$ with $i>j$.
+
+Given a sequence of $H_{1}, H_{2}, \ldots$ of recurrent events, we let the random variable $Z$ denote the waiting time until one of the $H_{i}$ occurs. Then
+$$
+\operatorname{Pr}[Z<\infty]=\sum_{k \geq 1} \operatorname{Pr}\left[\bar{H}_{1} \cap \ldots \cap \bar{H}_{k-1} \cap H_{k}\right]
+$$
+The following theorem establishes a necessary and sufficient condition for the waiting time to be finite.
+
+\textbf{Theorem $11.13$} Let $H_{1}, H_{2}, \ldots$ be recurrent events. Then for the waiting time $Z$ we have $\operatorname{Pr}[Z<$ $\infty]=1$ if and only if the sum $\sum_{k=1}^{\infty} \operatorname{Pr}\left[H_{k}\right]$ diverges. Furthermore, we have
+$$
+\operatorname{Pr}[Z<\infty]=1-\frac{1}{1+\sum_{k=1}^{\infty} \operatorname{Pr}\left[H_{k}\right]}
+$$
+if the sum converges.

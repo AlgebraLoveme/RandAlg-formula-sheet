@@ -1,0 +1,33 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{indentfirst}
+
+\let\oldReturn\Return
+
+%This is how you can create a "claim"-environment (or a lemma/Theorem/definition etc environment)
+\newtheorem{claim}{Claim}
+
+%This is how you can create a command of your own, e.g. to simplify the usage signs you often use.
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\EX}{\mathcal E_X}
+\newcommand{\EE}{\mathcal{E}}
+
+\title{RandAlg Formula Sheet}
+\author{Xiaoshuang Wang, Yuhao Mao}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\input{1-6}
+
+\input{7-11}
+
+\end{document}

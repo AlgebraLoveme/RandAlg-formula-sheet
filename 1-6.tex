@@ -1,0 +1,111 @@
+\section{Randomized Algorithm and Probabilistic method}
+\textbf{Definition 1.1}: A randomized algorithm $\mathcal{A}$ is called a Las Vegas algorithm if:
+i) For each input I and for each call the algorithm computes either the correct answer OPT(I) or returns the answer 'I don't know'.
+ii) There exists $\varepsilon>0$ such that for each input I we have
+$\operatorname{Pr}[\mathcal{A}$ returns the answer $\operatorname{OPT}(I)] \geq \varepsilon$.
+We say that $\mathcal{A}$ has success probability at least $\varepsilon$. (Note: The probability is computed with respect to the distributions of all random variables that are used by the algorithm.)
+Moreover, a Las Vegas algorithm is called efficient if on any input I its worst-case running time is polynomial in $|I|$.
+
+\textbf{Lemma 1.2}: Let $\mathcal{A}$ be a Las Vegas algorithm with success probability at least $\varepsilon>0$, and let $\delta>0$ some arbitrarily small constant. Then for every input I we have
+$\operatorname{Pr}\left[\right.$ At least one of $\left[\frac{\log \delta}{\log (1-\varepsilon)}\right]$ calls of $\mathcal{A}$ returns the answer $\left.\operatorname{OPT}(I)\right] \geq 1-\delta$.
+
+\textbf{Definition 1.3}: A randomized algorithm $\mathcal{A}$ is called a Monte Carlo algorithm if there exists $\varepsilon>0$ such that for each input I we have
+$\operatorname{Pr}[\mathcal{A}$ returns the answer $\operatorname{OPT}(I)] \geq \frac{1}{2}+\varepsilon$.
+We say that $\mathcal{A}$ has success probability at least $1 / 2+\varepsilon$. Moreover, we call a Monte Carlo algorithm efficient if on any Input I its worst-case running time is polynomial in $|I|$.
+
+\textbf{Lemma 1.4}: Let $\mathcal{A}$ be a Monte Carlo algorithm with success probability at least $1 / 2+\varepsilon$ for some $\varepsilon>0$, and let $\delta>0$ some arbitrarily small constant. Then for every input I we have
+$$
+\operatorname{Pr}\left[\text { MAJORITY }\left(\mathcal{A}, I,\left[\frac{2 \log \delta}{\log \left(1-4 \varepsilon^{2}\right)}\right]\right)=\operatorname{OPT}(I)\right] \geq 1-\delta,
+$$
+where MAJORITY $(\mathcal{A}, I, t)$ denotes the value which appears most often in $t$ independent calls of $\mathcal{A}$. (If this value is not unique, we just pick one at random.)
+
+\section{Linearity of Expectation}
+
+\textbf{Theorem 2.3}: Let $X$ be a random variable with $W_{X} \subseteq \mathbb{N}_{0}$ ($W_{X}:=X(\Omega)=\{x \in \mathbb{R} \mid \exists \omega \in \Omega \text { with } X(\omega)=x\}$). Then
+$$
+\mathbb{E}[X]=\sum_{i=1}^{\infty} \operatorname{Pr}[X \geq i]
+$$
+
+\textbf{Theorem 2.4 (Linearity of Expectation)}: For random variables $X_{1}, \ldots, X_{n}$ and $X:=a_{1} X_{1}+\ldots+a_{n} X_{n}$ with $a_{1}, \ldots, a_{n} \in \mathbb{R}$ we have
+$$
+\mathbb{E}[X]=a_{1} \mathbb{E}\left[X_{1}\right]+\ldots+a_{n} \mathbb{E}\left[X_{n}\right]
+$$
+
+\textbf{Prove maximum/minimum exceeds some threshold}: Show the expectation equals to the threshold. Then by the definition of expectation, the maximum/minimum must be at least the expectation.
+
+\section{The inequalities of Markov \& Chebyshev}
+
+\textbf{Theorem $3.1$ (Markov Inequality)}: Let $X$ be a non-negative random variable. For all $t>0$ we have
+$$
+\operatorname{Pr}[X \geq t] \leq \frac{\mathbb{E}[X]}{t}
+$$
+
+\textbf{Theorem 3.2 (Chebyshev Inequality)}: Let $X$ be a random variable. For all $t>0$ we have
+$$
+\operatorname{Pr}[|X-\mathbb{E}[X]| \geq t] \leq \frac{\operatorname{Var}[X]}{t^{2}}
+$$
+
+\section{First \& Second Moment Method}
+
+\textbf{Lemma 4.1 (First Moment Method)}: Let $\left(X_{n}\right)_{n \in \mathbb{N}}$ be a sequence of random variables which take nonnegative integer values. Then
+$\mathbb{E}\left[X_{n}\right]=o(1) $ implies $ \operatorname{Pr}\left[X_{n}=0\right]=1-o(1)$.
+
+\textbf{Lemma 4.2 (Second Moment Method)}: Let $\left(X_{n}\right)_{n \in \mathbb{N}}$ be a sequence of random variables. Then $\mathbb{E}\left[X_{n}\right] \neq 0$ (for $n$ large enough) and $\operatorname{Var}\left[X_{n}\right]=o\left(\mathbb{E}\left[X_{n}\right]^{2}\right) $ implies $ \operatorname{Pr}\left[X_{n}=0\right]=o(1).$
+
+\textbf{Definition 4.3}: Let $Q$ be a set of graphs. A function $t=t(n)$ is called sharp threshold for $Q$ if for every $\varepsilon>0$ we have
+$$
+\lim _{n \rightarrow \infty} \operatorname{Pr}\left[G_{n, p} \in Q\right]= \begin{cases}0, & \text { if } p \leq(1-\varepsilon) t(n) \\ 1, & \text { if } p \geq(1+\varepsilon) t(n)\end{cases}
+$$
+
+\textbf{Definition 4.4}: Let $Q$ be a set of graphs. A function $t=t(n)$ is called weak threshold for $Q$ if
+$$
+\lim _{n \rightarrow \infty} \operatorname{Pr}\left[G_{n, p} \in Q\right]= \begin{cases}0, & \text { if } p \ll t(n) \\ 1, & \text { if } p \gg t(n)\end{cases}
+$$
+
+\section{Chernoff Bounds}
+
+\textbf{Theorem 5.1}: Let $X_{1}, \ldots, X_{n}$ be independent Bernoulli-distributed random variables with $\operatorname{Pr}\left[X_{i}=1\right]=$ $p_{i}$ and $\operatorname{Pr}\left[X_{i}=0\right]=1-p_{i}$. Then for $X:=\sum_{i=1}^{n} X_{i}$ and $\mu:=\mathbb{E}[X]=\sum_{i=1}^{n} p_{i}$, and every $\delta>0$ we have
+$$
+\operatorname{Pr}[X \geq(1+\delta) \mu] \leq\left(\frac{e^{\delta}}{(1+\delta)^{1+\delta}}\right)^{\mu}
+$$
+
+\textbf{Theorem 5.3}: Let $X_{1}, \ldots, X_{n}$ be independent Bernoulli-distributed random variables with $\operatorname{Pr}\left[X_{i}=1\right]=$ $p_{i}$ and $\operatorname{Pr}\left[X_{i}=0\right]=1-p_{i}$. Then for $X:=\sum_{i=1}^{n} X_{i}$ and $\mu:=\mathbb{E}[X]=\sum_{i=1}^{n} p_{i}$, and every $0<\delta<1$ we have
+$$
+\operatorname{Pr}[X \leq(1-\delta) \mu] \leq\left(\frac{e^{-\delta}}{(1-\delta)^{1-\delta}}\right)^{\mu}
+$$
+
+\textbf{Corollary 5.4}: Let $X_{1}, \ldots, X_{n}$ be independent Bernoulli-distributed random variables with $\operatorname{Pr}\left[X_{i}=\right.$ $1]=p_{i}$ and $\operatorname{Pr}\left[X_{i}=0\right]=1-p_{i}$. Then the following inequalities hold for $X:=\sum_{i=1}^{n} X_{i}$ and $\mu:=$ $\mathbb{E}[X]=\sum_{i=1}^{n} p_{i}$ :
+
+(i) $\operatorname{Pr}[X \geq(1+\delta) \mu] \leq e^{-\mu \delta^{2} / 3} \quad$ for all $0<\delta \leq 1$,
+
+(ii) $\operatorname{Pr}[X \leq(1-\delta) \mu] \leq e^{-\mu \delta^{2} / 2}$ for all $0<\delta \leq 1$,
+
+(iii) $\operatorname{Pr}[|X-\mu| \geq \delta \mu] \leq 2 e^{-\mu \delta^{2} / 3}$ for all $0<\delta \leq 1$,
+
+(iv) $\operatorname{Pr}[X \geq t] \leq 2^{-t}$ for $t \geq 2 e \mu$.
+
+\section{Negative Correlation}
+
+\textbf{Lemma 6.1}: Let $X_{1}, \ldots, X_{n}$ be Bernoulli random variables that are pairwise negatively correlated. Then $X=\sum_{i=1}^{n} X_{i}$ satisfies
+$\operatorname{Var}[X] \leq \mathbb{E}[X]$
+
+\textbf{Corollary 6.2}: Let $\left(Z_{n}\right)_{n \in \mathbb{N}}$ be a sequence of random variables such that each $Z_{i}$ is the sum of pairwise negatively correlated Bernoulli random variables. Then
+$$
+\begin{array}{lll}
+\mathbb{E}\left[Z_{n}\right] \rightarrow 0 & \text { implies } & \operatorname{Pr}\left[Z_{n}=0\right] \rightarrow 1, \text { and } \\
+\mathbb{E}\left[Z_{n}\right] \rightarrow \infty & \text { implies } & \operatorname{Pr}\left[Z_{n}=0\right] \rightarrow 0
+\end{array}
+$$
+
+\textbf{Definition 6.3}: Random variables $X_{1}, \ldots, X_{n}$ are said to be negatively associated iff for every two disjoint subsets $I, J \subseteq\{1, \ldots, n\}$ and every two functions $f: \mathbb{R}^{|I|} \rightarrow \mathbb{R}$ and $g: \mathbb{R}^{|J|} \rightarrow \mathbb{R}$ that are either both componentwise increasing or both componentwise decreasing (not necessarily strictly) we have
+$$
+\mathbb{E}\left[f\left(X_{i}, i \in I\right) \cdot g\left(X_{j}, j \in J\right)\right] \leq \mathbb{E}\left[f\left(X_{i}, i \in I\right)\right] \cdot \mathbb{E}\left[g\left(X_{j}, j \in J\right)\right] .
+$$
+
+\textbf{Theorem 6.4}: Let $X_{1}, \ldots, X_{n}$ be Bernoulli-distributed random variables with $\operatorname{Pr}\left[X_{i}=1\right]=p_{i}$ and $\operatorname{Pr}\left[X_{i}=0\right]=1-p_{i}$ that are negatively associated, and let $X:=\sum_{i=1}^{n} X_{i}$ and $\mu:=\mathbb{E}[X]=\sum_{i=1}^{n} p_{i}$. Then the bounds in Theorems $5.1$ and $5.3$ and Corollary $5.4$ hold for $X$ as well.
+
+\textbf{Lemma 6.5}: Let $X_{1}, \ldots, X_{n}$ be Bernoulli random variables such that $\sum_{i=1}^{n} X_{i} \equiv 1$. Then the variables $X_{1}, \ldots, X_{n}$ are negatively associated.
+
+\textbf{Lemma 6.6}: If $\mathbf{X}=\left(X_{1}, \ldots, X_{n}\right)$ and $\mathbf{Y}=\left(Y_{1}, \ldots, Y_{m}\right)$ are mutually independent and both are negatively associated, then $(\mathbf{X}, \mathbf{Y})=\left(X_{1}, \ldots, X_{n}, Y_{1}, \ldots, Y_{m}\right)$ is also negatively associated.
+
+\textbf{Lemma 6.7}: If $X_{1}, \ldots, X_{n}$ are negatively associated random variables, $I_{1}, \ldots, I_{k} \subseteq\{1, \ldots, n\}$ are pairwise disjoint sets, and $h_{s}: \mathbb{R}^{\left|I_{s}\right|} \rightarrow \mathbb{R}, 1 \leq s \leq k$, are functions that are all componentwise increasing or all componentwise decreasing (not necessarily strictly), then the variables $Y_{1}, \ldots, Y_{k}$ where $Y_{s}:=h_{s}\left(X_{i}, i \in I_{s}\right), 1 \leq s \leq k$, are also negatively associated.
